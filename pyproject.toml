@@ -1,0 +1,32 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "conquest"
+version = "0.1.0"
+description = "Conquest trading system shared library: data, regime, vol, indicators, models, backtest."
+requires-python = ">=3.12"
+dependencies = [
+    "pandas>=2.2",
+    "numpy>=2.0",
+    "scipy>=1.15",
+    "scikit-learn>=1.6",
+    "requests>=2.32",
+    "pyyaml>=6.0",
+    "python-dateutil>=2.9",
+    "matplotlib>=3.10",
+    "pyarrow>=15.0",
+    "yfinance>=0.2.40",
+]
+
+[project.optional-dependencies]
+test = ["pytest>=8.0"]
+
+[tool.setuptools.packages.find]
+include = ["conquest*"]
+exclude = ["scripts*", "cstability*", "cgrowth*", "python-practice*", "tests*"]
+
+[tool.pytest.ini_options]
+testpaths = ["conquest/tests"]
+addopts = "-v"

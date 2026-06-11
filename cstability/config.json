@@ -1,0 +1,15 @@
+{
+    "algorithm-language": "Python",
+    "parameters": {
+        "ALERT_EMAIL": "",
+        "FRED_API_KEY": "",
+        "SLIPPAGE_MODEL": "volume_share",
+        "DATA_FRESHNESS_DAYS": "35"
+    },
+    "description": "",
+    "local-id": 906969144,
+    "cloud-id": 31102187,
+    "organization-id": "",
+    "python-venv": 1,
+    "encrypted": false
+}

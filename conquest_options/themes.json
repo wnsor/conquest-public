@@ -1,0 +1,52 @@
+{
+  "_meta": {
+    "description": "Curated thematic ticker buckets for options strategies.",
+    "review_cadence": "monthly",
+    "last_reviewed": "2026-05-23",
+    "screening_note": "Each theme has manual seed tickers + auto-screen criteria. Strategies subscribe by theme name."
+  },
+  "themes": {
+    "ai_data_center": {
+      "description": "AI infrastructure, semis, hyperscaler cap ex",
+      "manual_seed": ["NVDA", "AVGO", "MU", "SMCI", "ANET", "AMD", "ORCL", "TSM", "ASML"],
+      "auto_screen": {"sector": "Tech", "subsector_match": ["Semi", "Cloud", "Software"], "min_60d_rs_vs_spy_pct": 0.0},
+      "regime_tilts": {"Deflation": 1.0, "Inflation": 0.7, "Stagflation": 0.4, "Recession": 0.3}
+    },
+    "space_defense": {
+      "description": "Aerospace, defense primes, commercial space, satellite",
+      "manual_seed": ["LMT", "RTX", "NOC", "GD", "RKLB", "ASTS", "BA", "PLTR"],
+      "auto_screen": {"sic_codes": [3812, 3761, 3721], "min_mkt_cap_b": 1.0, "max_mkt_cap_b": 200.0},
+      "regime_tilts": {"Deflation": 0.8, "Inflation": 1.0, "Stagflation": 0.9, "Recession": 0.7}
+    },
+    "energy_transition_nuclear": {
+      "description": "Power generation, nuclear, uranium, EV charging, renewables",
+      "manual_seed": ["LEU", "OKLO", "CEG", "VST", "NEE", "BE"],
+      "auto_screen": {"sector": "Utilities", "subsector_match": ["Nuclear", "Renew"]},
+      "regime_tilts": {"Deflation": 0.8, "Inflation": 1.0, "Stagflation": 1.0, "Recession": 0.6}
+    },
+    "crypto_equity_proxy": {
+      "description": "Crypto-correlated equities (miners, exchanges, treasury holders)",
+      "manual_seed": ["COIN", "MSTR", "MARA", "RIOT", "CLSK"],
+      "auto_screen": {"beta_vs_btc_60d_min": 0.5},
+      "regime_tilts": {"Deflation": 1.0, "Inflation": 0.8, "Stagflation": 0.5, "Recession": 0.3}
+    },
+    "biotech_catalysts": {
+      "description": "Biotechs with imminent PDUFA dates or phase-3 readouts",
+      "manual_seed": ["LLY", "REGN", "VRTX", "BIIB", "ALNY", "MRNA"],
+      "auto_screen": {"sector": "Healthcare", "subsector_match": ["Biotech"]},
+      "regime_tilts": {"Deflation": 0.9, "Inflation": 0.7, "Stagflation": 0.7, "Recession": 0.5}
+    },
+    "midcap_momentum": {
+      "description": "Russell midcap names with positive 60d relative strength",
+      "manual_seed": ["DKS", "RH", "WSM", "FTNT", "DDOG", "PLTR", "AFRM"],
+      "auto_screen": {"mkt_cap_b_range": [2, 50], "min_60d_rs_vs_spy_pct": 5.0},
+      "regime_tilts": {"Deflation": 1.0, "Inflation": 0.8, "Stagflation": 0.6, "Recession": 0.4}
+    },
+    "consumer_brands": {
+      "description": "Consumer discretionary names with brand moats",
+      "manual_seed": ["COST", "WMT", "NKE", "LULU", "CMG", "DPZ", "TXRH"],
+      "auto_screen": {"sector": "Cons Disc"},
+      "regime_tilts": {"Deflation": 0.9, "Inflation": 0.6, "Stagflation": 0.5, "Recession": 0.4}
+    }
+  }
+}

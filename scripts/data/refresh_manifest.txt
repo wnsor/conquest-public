@@ -1,0 +1,82 @@
+# QC Object Store keys ↔ local paths.
+# Used by scripts/data/object_store_pull.py (pre-refresh) and
+# scripts/object_store_push.py (post-refresh) so cloud + local stay in sync.
+#
+# Format: <key>  <local-path-relative-to-workspace-root>
+#
+# IMPORTANT — INVARIANT: if you add a new key that any algorithm reads via
+# self.object_store.read(...), you MUST add it here too, otherwise it won't
+# be refreshed daily. The user's directive 2026-05-26 is "no gaps ever" —
+# this file is the single source of truth for what's automated.
+#
+# Categories:
+#
+#   Tier 1 — external raw data
+#   Tier 2 — derived from Tier 1
+#   Universe — slow-changing membership lists
+#   State — algo-written (intentionally NOT in this manifest; algorithms
+#           manage these themselves)
+
+# ── Tier 1: external raw ──────────────────────────────────────────────────
+conquest/vix/daily.csv                                   storage/conquest/vix/daily.csv
+conquest/yield_curve/t10y2y.csv                          storage/conquest/yield_curve/t10y2y.csv
+conquest/macro/unrate.csv                                storage/conquest/macro/unrate.csv
+conquest/macro/cpi.csv                                   storage/conquest/macro/cpi.csv
+conquest/macro/gdp.csv                                   storage/conquest/macro/gdp.csv
+conquest/insider/form4_opportunistic_buys_daily.csv     storage/conquest/insider/form4_opportunistic_buys_daily.csv
+conquest/sentiment/gdelt_daily.csv                       storage/conquest/sentiment/gdelt_daily.csv
+conquest/options/earnings_calendar.csv                   storage/conquest/options/earnings_calendar.csv
+conquest/options/finra_si_biweekly.csv                   storage/conquest/options/finra_si_biweekly.csv
+conquest/options/cboe_pc_daily.csv                       storage/conquest/options/cboe_pc_daily.csv
+
+# ── Tier 2: derived ───────────────────────────────────────────────────────
+conquest/credit/hyg_ief_spread.csv                       storage/conquest/credit/hyg_ief_spread.csv
+conquest/vix/term_ratio.csv                              storage/conquest/vix/term_ratio.csv
+conquest/regime/daily.csv                                storage/conquest/regime/daily.csv
+conquest/regime/probability.csv                          storage/conquest/regime/probability.csv
+conquest/regime/gmm_daily.csv                            storage/conquest/regime/gmm_daily.csv
+conquest/votes/cstability_4vote_daily.csv                storage/conquest/votes/cstability_4vote_daily.csv
+
+# ── Options gate signal (BULL book) ───────────────────────────────────────
+# S&P breadth (% > 200DMA). confidence.csv's leading_confidence column IS this
+# breadth — the conquest_options BULL gate reads it and deploys only when > 0.50.
+# Both pulled pre-refresh (deep 2014- history persists in the Object Store) and
+# pushed post-refresh by export_breadth.py via the "breadth" source (weekly).
+conquest/breadth/sp500_above_200d_ma.csv                 storage/conquest/breadth/sp500_above_200d_ma.csv
+conquest/leading/confidence.csv                          storage/conquest/leading/confidence.csv
+
+# ── Universes ─────────────────────────────────────────────────────────────
+conquest/universe/sp500.csv                              storage/conquest/universe/sp500.csv
+conquest/universe/sp500_pit_monthly.csv                  storage/conquest/universe/sp500_pit_monthly.csv
+conquest/universe/sp500_union_2008_2024.csv              storage/conquest/universe/sp500_union_2008_2024.csv
+conquest/universe/sp1500_current.csv                     storage/conquest/universe/sp1500_current.csv
+conquest/universe/sp1500_changes.csv                     storage/conquest/universe/sp1500_changes.csv
+conquest/universe/leveraged_etfs.csv                     storage/conquest/universe/leveraged_etfs.csv
+conquest/universe/acwx_top.csv                           storage/conquest/universe/acwx_top.csv
+conquest/universe/options_screen_daily.csv               storage/conquest/universe/options_screen_daily.csv
+
+# ── SHELVED 2026-06-01: minimum-signal-set (added 2026-05-26) ─────────────
+# Fed standby strategies (tail_hedge, vvix_divergence, retail_attention,
+# earnings_revision, quad_confluence, activist_drift, eightk_burst, lockup)
+# that were never built — no live/promoted OR options model reads them.
+# Commented out so the daily + weekly refresh skip them (user directive
+# 2026-06-01). Un-shelve = uncomment here AND re-add the handler in
+# refresh_all.py HANDLERS.
+# conquest/options/cboe_indices_daily.csv                  storage/conquest/options/cboe_indices_daily.csv
+# conquest/macro/nfci_weekly.csv                           storage/conquest/macro/nfci_weekly.csv
+# conquest/options/earnings_revisions_daily.csv            storage/conquest/options/earnings_revisions_daily.csv
+# conquest/macro/cftc_cot_weekly.csv                       storage/conquest/macro/cftc_cot_weekly.csv
+# conquest/insider/edgar_13d_filings.csv                   storage/conquest/insider/edgar_13d_filings.csv
+# conquest/insider/edgar_8k_count_daily.csv                storage/conquest/insider/edgar_8k_count_daily.csv
+# conquest/sentiment/google_trends_daily.csv               storage/conquest/sentiment/google_trends_daily.csv
+# conquest/sentiment/reddit_wsb_daily.csv                  storage/conquest/sentiment/reddit_wsb_daily.csv
+# conquest/options/ipo_lockup_calendar.csv                 storage/conquest/options/ipo_lockup_calendar.csv
+
+# ── SHELVED 2026-06-01: synthetic 1968-2026 (research backtests only) ──────
+# Large regenerable files for extended-window research; no live/options model
+# reads them. Removed from the daily/weekly pull+push. Regenerate on demand via
+# scripts/generate_synthetic_data.py when a research backtest needs them.
+# conquest/synthetic/vix_synthetic_daily_1968_2026.csv     storage/conquest/synthetic/vix_synthetic_daily_1968_2026.csv
+# conquest/synthetic/hy_spread_daily_1968_2026.csv         storage/conquest/synthetic/hy_spread_daily_1968_2026.csv
+# conquest/synthetic/regime_daily_1968_2026.csv            storage/conquest/synthetic/regime_daily_1968_2026.csv
+# conquest/synthetic/lev_etf_daily_1968_2026.csv           storage/conquest/synthetic/lev_etf_daily_1968_2026.csv

@@ -1,0 +1,15 @@
+{
+    "algorithm-language": "Python",
+    "parameters": {
+        "BACKTEST_START_YEAR": "2008",
+        "BACKTEST_END_YEAR": "2026",
+        "SEED_CASH": "10000",
+        "ENABLE_SMOKE": "false"
+    },
+    "description": "Conquest Options - long-only options strategy framework",
+    "local-id": 0,
+    "cloud-id": 32043797,
+    "organization-id": "",
+    "python-venv": 1,
+    "encrypted": false
+}

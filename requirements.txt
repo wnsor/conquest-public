@@ -1,0 +1,23 @@
+# Conquest dependencies.
+# Install in conda env `conquest`:
+#     pip install -r requirements.txt
+# Or, from pyproject.toml (preferred for editable install of the package itself):
+#     pip install -e .[test]
+
+pandas>=2.2
+numpy>=2.0
+scipy>=1.15
+scikit-learn>=1.6
+requests>=2.32
+pyyaml>=6.0
+python-dateutil>=2.9
+matplotlib>=3.10
+pyarrow>=15.0
+yfinance>=0.2.40        # research-only price source for the bake-off; Lean uses its own data
+
+pytest>=8.0
+
+# Phase 25 — xgboost M1 ranker (offline training only; QC sandbox handles xgboost natively)
+xgboost>=2.0
+shap>=0.45
+statsmodels>=0.14
