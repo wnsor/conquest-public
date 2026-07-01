@@ -4,7 +4,7 @@
 
 Conquest is a personal systematic trading system built on [QuantConnect Lean](https://www.lean.io/). It doesn't forecast — it reacts to what markets are doing *today* (volatility, momentum, credit spreads, the macro regime) and applies pre-committed, rule-based allocations. Long-only, no margin, no option selling.
 
-> 🔒 **Source availability — some of the code is intentionally hidden.** This repository publishes the full **framework** and **three of the models** (`cstability`, `cgrowth`, `chybrid`). The two flagship strategies — **`surge`** (aggressive) and **`ctactical`** (balanced) — are **proprietary, and their source code is not included here.** Their backtested results are shown below for context only.
+> 🔒 **Source availability — some of the code is intentionally hidden.** This repository publishes the full **framework**, the **research sleeves** (`cstability`, `cgrowth`, `chybrid`), and a **plain hands-off allocation** (`Bastion`). The current live flagship — **`octane`** (aggressive tech/AI momentum) — is **proprietary: its source, stock universe, and parameters are not included, and its figures are withheld.** The earlier **`surge`** and **`ctactical`** strategies have since been **retired** (their source was never published either).
 
 > ⚠️ Every figure below is a *backtest*; backtested performance does not predict future results.
 
@@ -16,7 +16,7 @@ Conquest is a personal systematic trading system built on [QuantConnect Lean](ht
 - **Three full model implementations** — `cstability` (defensive ETF rotator), `cgrowth` (S&P 500 momentum), `chybrid` (combined multi-asset fund), plus `benchmarks_buy_hold`.
 - **`scripts/`** — the data-refresh pipeline (signals → Object Store) and supporting tooling.
 - **`conquest_options/`** — options-overlay research (deferred; mostly rejected experiments, kept for transparency).
-- **Not included:** the `surge` and `ctactical` strategy source (proprietary).
+- **Not included:** the live flagship **`octane`** — its source, stock universe, and parameters are all withheld (proprietary) — and the retired **`surge`** / **`ctactical`** strategies, whose source was never published.
 
 ---
 
@@ -31,15 +31,19 @@ Conquest is a personal systematic trading system built on [QuantConnect Lean](ht
 
 ## The models
 
-Figures are **point-in-time backtests, 2008-01-01 → 2026-02 (illustrative, not a forecast)**. The first three ship with full source; the last two are described for context with source kept private.
+Figures are **point-in-time backtests over an ~18-year window (illustrative, not a forecast)**. The sleeves + Bastion ship with (or need) no hidden logic; the live flagship `octane` is listed for context only, with source, universe, and figures withheld.
 
 | Model | Source | What it does | CAGR | Max DD | PSR |
 |---|---|---|---:|---:|---:|
-| **cstability** | ✅ open | Defensive ETF rotator over a broad universe; a multi-signal risk-off ensemble drives a layered cash blend and volatility gate | ~12% | −20% | 15% |
-| **cgrowth** | ✅ open | Top-5 large-cap equity momentum (momentum × low-volatility), with a sector cap, volatility gate, and a crisis-gate fed from cstability | ~20% | −23% | 35% |
-| **chybrid** | ✅ open | Combined multi-asset fund: the growth + defensive sleeves plus a crypto chain, gold, and cash | ~15% | −14% | 40% |
-| **surge** | 🔒 private | Aggressive leveraged-ETF momentum rotation with a volatility-spike overlay | ~45% | −46% | 26% |
-| **ctactical** | 🔒 private | Balanced blend of the growth + defensive sleeves with gold, a small crypto sleeve, and cash | ~22% | −20% | 72% |
+| **cstability** | ✅ open | Defensive ETF rotator over a broad universe; a multi-signal risk-off ensemble drives a layered cash blend and volatility gate | ~13% | −21% | 24% |
+| **cgrowth** | ✅ open | Top-5 large-cap equity momentum (momentum × low-volatility), with a sector cap, volatility gate, and a crisis-gate fed from cstability | ~20% | −33% | 33% |
+| **chybrid** | ✅ open | Combined multi-asset fund: the growth + defensive sleeves plus a crypto chain, gold, and cash | ~17% | −13% | 78% |
+| **Bastion** | ✅ trivial | Hands-off 80% Nasdaq-100 + 20% gold buy-hold — the survivable, tax-efficient core (a plain public allocation; there is no proprietary logic to publish) | ~15% | −42% | — |
+| **octane** | 🔒 private · live | Aggressive, concentrated tech/AI single-stock momentum with a macro-tail crash gate; unlevered. Source, stock universe, and parameters withheld | 🔒 | 🔒 | 🔒 |
+| *surge* | 🔒 private · retired | Aggressive leveraged-ETF momentum rotation with a volatility-spike overlay | ~45% | −46% | 26% |
+| *ctactical* | 🔒 private · retired | Balanced blend of the growth + defensive sleeves with gold, a small crypto sleeve, and cash | ~22% | −20% | 72% |
+
+`octane`'s figures are withheld on purpose: it is the live edge, and its curated backtest is hindsight-inflated in any case, so a headline number would mislead more than inform.
 
 ---
 
@@ -91,4 +95,4 @@ The model algorithms are QuantConnect Lean projects: each reads its signals from
 
 ## Disclaimer
 
-This is a **personal research project** — Nothing here is an offer or solicitation. Backtested and simulated results have inherent limitations and **do not guarantee or predict future performance**; live results will differ. Leveraged and volatility-linked instruments can lose value rapidly. As noted above, the `surge` and `ctactical` strategy source is proprietary and **not included**; nothing here is licensed for reuse.
+This is a **personal research project** — Nothing here is an offer or solicitation. Backtested and simulated results have inherent limitations and **do not guarantee or predict future performance**; live results will differ. Leveraged and volatility-linked instruments can lose value rapidly. As noted above, the live `octane` strategy — its source, stock universe, and parameters — is proprietary and **not included** (and the retired `surge` / `ctactical` source was never published); nothing here is licensed for reuse.
