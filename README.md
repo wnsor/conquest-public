@@ -80,7 +80,7 @@ scripts/              Data-refresh pipeline + tooling
 
 ```bash
 # Python 3.12 (conda env recommended)
-pip install -e .[test]
+pip install -e '.[test]'                 # quote the extras — zsh treats .[test] as a glob
 pytest                                   # run the test suite
 
 # Regenerate the signal pipeline (needs your own FRED/BLS API keys in the environment):
