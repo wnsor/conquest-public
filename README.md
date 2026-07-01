@@ -4,7 +4,7 @@
 
 Conquest is a personal systematic trading system built on [QuantConnect Lean](https://www.lean.io/). It doesn't forecast — it reacts to what markets are doing *today* (volatility, momentum, credit spreads, the macro regime) and applies pre-committed, rule-based allocations. Long-only, no margin, no option selling.
 
-> 🔒 **Source availability — some of the code is intentionally hidden.** This repository publishes the full **framework**, the **research sleeves** (`cstability`, `cgrowth`, `chybrid`), and a **plain hands-off allocation** (`Bastion`). The current live flagship — **`octane`** (aggressive tech/AI momentum) — is **proprietary: its source, stock universe, and parameters are not included, and its figures are withheld.** The earlier **`surge`** and **`ctactical`** strategies have since been **retired** (their source was never published either).
+> 🔒 **Source availability — some of the code is intentionally hidden.** This repository publishes the full **framework** and the three models it's built around — **`cstability`**, **`cgrowth`**, and **`chybrid`**. Other strategies (the live flagship **`octane`**, and the retired **`surge`** / **`ctactical`**) are proprietary and **not included**; they appear in the table below for context only.
 
 > ⚠️ Every figure below is a *backtest*; backtested performance does not predict future results.
 
@@ -13,10 +13,9 @@ Conquest is a personal systematic trading system built on [QuantConnect Lean](ht
 ## What's in this repository
 
 - **`conquest/`** — the shared library: point-in-time data adapters (ALFRED/FRED/BLS), a macro-regime classifier, volatility + indicator utilities, a backtest engine with overfit-deflated metrics (Deflated / Probabilistic Sharpe), signal helpers, and a research "model zoo" of strategy variants.
-- **Three full model implementations** — `cstability` (defensive ETF rotator), `cgrowth` (S&P 500 momentum), `chybrid` (combined multi-asset fund), plus `benchmarks_buy_hold`.
+- **Three full model implementations** — `cstability` (defensive ETF rotator), `cgrowth` (S&P 500 momentum), `chybrid` (combined multi-asset fund).
 - **`scripts/`** — the data-refresh pipeline (signals → Object Store) and supporting tooling.
-- **`conquest_options/`** — options-overlay research (deferred; mostly rejected experiments, kept for transparency).
-- **Not included:** the live flagship **`octane`** — its source, stock universe, and parameters are all withheld (proprietary) — and the retired **`surge`** / **`ctactical`** strategies, whose source was never published.
+- **Not included:** the live flagship **`octane`** (source, stock universe, and parameters withheld) and the retired **`surge`** / **`ctactical`** strategies — all proprietary.
 
 ---
 
@@ -69,8 +68,7 @@ conquest/             Shared library (the framework)
   signals/  models/   Signal helpers + a research model zoo
   production/         Live-runtime support (alerts, freshness, state, attribution)
   tests/              pytest suite
-cstability/  cgrowth/  chybrid/  benchmarks_buy_hold/   Model algorithms (full source)
-conquest_options/     Options-overlay research (deferred)
+cstability/  cgrowth/  chybrid/   Model algorithms (full source)
 scripts/              Data-refresh pipeline + tooling
 ```
 
@@ -95,4 +93,4 @@ The model algorithms are QuantConnect Lean projects: each reads its signals from
 
 ## Disclaimer
 
-This is a **personal research project** — Nothing here is an offer or solicitation. Backtested and simulated results have inherent limitations and **do not guarantee or predict future performance**; live results will differ. Leveraged and volatility-linked instruments can lose value rapidly. As noted above, the live `octane` strategy — its source, stock universe, and parameters — is proprietary and **not included** (and the retired `surge` / `ctactical` source was never published); nothing here is licensed for reuse.
+This is a **personal research project** — Nothing here is an offer or solicitation. Backtested and simulated results have inherent limitations and **do not guarantee or predict future performance**; live results will differ. Leveraged and volatility-linked instruments can lose value rapidly. As noted above, the live `octane` strategy — its source, stock universe, and parameters — is proprietary and **not included**; nothing here is licensed for reuse.
