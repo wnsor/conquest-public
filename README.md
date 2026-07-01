@@ -30,7 +30,7 @@ Conquest is a personal systematic trading system built on [QuantConnect Lean](ht
 
 ## The models
 
-Figures are **point-in-time backtests over an ~18-year window (illustrative, not a forecast)**. The sleeves + Bastion ship with (or need) no hidden logic; the live flagship `octane` is listed for context only, with source, universe, and figures withheld.
+Figures are **point-in-time backtests over an ~18-year window (illustrative, not a forecast)**. The sleeves + Bastion ship with (or need) no hidden logic; the live flagship `octane` is listed for context only, with its source and stock universe withheld.
 
 | Model | Source | What it does | CAGR | Max DD | PSR |
 |---|---|---|---:|---:|---:|
@@ -38,11 +38,11 @@ Figures are **point-in-time backtests over an ~18-year window (illustrative, not
 | **cgrowth** | ✅ open | Top-5 large-cap equity momentum (momentum × low-volatility), with a sector cap, volatility gate, and a crisis-gate fed from cstability | ~20% | −33% | 33% |
 | **chybrid** | ✅ open | Combined multi-asset fund: the growth + defensive sleeves plus a crypto chain, gold, and cash | ~17% | −13% | 78% |
 | **Bastion** | ✅ trivial | Hands-off 80% Nasdaq-100 + 20% gold buy-hold — the survivable, tax-efficient core (a plain public allocation; there is no proprietary logic to publish) | ~15% | −42% | — |
-| **octane** | 🔒 private · live | Aggressive, concentrated tech/AI single-stock momentum with a macro-tail crash gate; unlevered. Source, stock universe, and parameters withheld | 🔒 | 🔒 | 🔒 |
+| **octane** | 🔒 private · live | Aggressive, concentrated tech/AI single-stock momentum with a macro-tail crash gate; unlevered. Source, stock universe, and parameters withheld | ~52%¹ | −51% | 61% |
 | *surge* | 🔒 private · retired | Aggressive leveraged-ETF momentum rotation with a volatility-spike overlay | ~45% | −46% | 26% |
 | *ctactical* | 🔒 private · retired | Balanced blend of the growth + defensive sleeves with gold, a small crypto sleeve, and cash | ~22% | −20% | 72% |
 
-`octane`'s figures are withheld on purpose: it is the live edge, and its curated backtest is hindsight-inflated in any case, so a headline number would mislead more than inform.
+¹ `octane`'s curated universe contains names chosen with hindsight, so its ~52% backtest **overstates the forward edge** — treat it as an optimistic upper bound (realistically lower, with a deep drawdown, if the AI thesis doesn't hold), not a forecast. Its source, universe, and parameters remain private.
 
 ---
 
