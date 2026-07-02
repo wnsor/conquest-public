@@ -6,8 +6,6 @@ Conquest is a personal systematic trading system built on [QuantConnect Lean](ht
 
 > 🔒 **Source availability — some of the code is intentionally hidden.** This repository publishes the full **framework** and the three models it's built around — **`cstability`**, **`cgrowth`**, and **`chybrid`**. Other strategies (the live flagship **`octane`**, and the retired **`surge`** / **`ctactical`**) are proprietary and **not included**; they appear in the table below for context only.
 
-> ⚠️ Every figure below is a *backtest*; backtested performance does not predict future results.
-
 ---
 
 ## What's in this repository
