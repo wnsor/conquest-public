@@ -4,9 +4,9 @@
 
 Conquest is a personal systematic trading system built on [QuantConnect Lean](https://www.lean.io/). It doesn't forecast — it reacts to what markets are doing *today* (volatility, momentum, credit spreads, the macro regime) and applies pre-committed, rule-based allocations. Long-only, no margin, no option selling.
 
-![Conquest model equity curves, 2008–2026 (log scale, $25k start)](docs/equity-curves.png)
+![Conquest model equity curves, 2016–2026 (log scale, $25k start)](docs/equity-curves.png)
 
-*Point-in-time backtests · $25k start · 2008–2026 · log scale — illustrative, not a forecast. Octane's curated curve is hindsight-inflated (see the note under the table below).*
+*Point-in-time backtests · $25k start · 2016–2026 (the recent decade) · log scale — illustrative, not a forecast. Octane's curated curve is hindsight-inflated (see the note under the table below).*
 
 > 🔒 **Source availability — some of the code is intentionally hidden.** This repository publishes the full **framework** and the three models it's built around — **`cstability`**, **`cgrowth`**, and **`chybrid`**. Other strategies (the live flagship **`octane`**, and the retired **`surge`** / **`ctactical`**) are proprietary and **not included**; they appear in the table below for context only.
 
